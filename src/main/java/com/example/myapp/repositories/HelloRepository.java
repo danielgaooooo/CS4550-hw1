@@ -1,6 +1,7 @@
-package com.example.myapp;
+package com.example.myapp.repositories;
 
-import com.example.myapp.Hello;
 import org.springframework.data.repository.CrudRepository;
+
+import com.example.myapp.models.Hello;
 
 public interface HelloRepository extends CrudRepository<Hello, Integer> {}
