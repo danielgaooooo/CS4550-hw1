@@ -11,6 +11,7 @@
         tbody = $('tbody');
         template = $('.template');
         $('#createUser').click(createUser);
+        findAllUsers();
     }
 
     function createUser() {
@@ -22,12 +23,13 @@
             username: username,
             password: password,
             firstName: firstName,
-            lastName: lastName,
-        }
+            lastName: lastName
+        };
         userService.createUser(user).then(findAllUsers);
     }
 
     function renderUsers(users) {
+        tbody.empty();
         for (var i = 0; i < users.length; i++) {
             var user = users[i];
             var clone = template.clone();
@@ -36,7 +38,7 @@
             clone.find('.delete').click(deleteUser);
             clone.find('.edit').click(editUser);
             clone.find('.username')
-                .html(user.username).
+                .html(user.username);
             tbody.append(clone);
         }
     }
@@ -51,7 +53,7 @@
             .parent()
             .parent()
             .attr('id');
-        userService.deleteUser(userId);
+        userService.deleteUser(userId).then(findAllUsers);
     }
 
     function editUser(event) {
