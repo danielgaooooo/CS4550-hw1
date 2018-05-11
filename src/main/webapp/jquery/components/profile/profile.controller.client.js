@@ -13,7 +13,6 @@
         $firstName = $("#firstName");
         $lastName = $("#lastName");
         $updateBtn = $("#updateBtn").click(updateUser);
-
         findUserById(12);
     }
 
