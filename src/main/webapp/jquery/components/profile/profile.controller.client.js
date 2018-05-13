@@ -12,7 +12,8 @@
         $staticEmail = $("#staticEmail");
         $firstName = $("#firstName");
         $lastName = $("#lastName");
-        $updateBtn = $("#updateBtn").click(updateUser);
+        $updateBtn = $("#updateBtn")
+            .click(updateUser);
         findUserById(12);
     }
 
@@ -21,6 +22,8 @@
             firstName: $firstName.val(),
             lastName: $lastName.val()
         };
+
+        userService.updateUser(12, user).then(init);
     }
 
     function findUserById(userId) {
@@ -30,7 +33,6 @@
     }
 
     function renderUser(user) {
-        console.log(user);
         $staticEmail.val(user.username);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);

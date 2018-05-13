@@ -19,11 +19,13 @@
         var password = $('#passwordFld').val();
         var firstName = $('#firstNameFld').val();
         var lastName = $('#lastNameFld').val();
+        var role = $('#roleFld').val();
         var user = {
             username: username,
             password: password,
             firstName: firstName,
-            lastName: lastName
+            lastName: lastName,
+            role: role
         };
         userService.createUser(user).then(findAllUsers);
     }
@@ -39,6 +41,13 @@
             clone.find('.edit').click(editUser);
             clone.find('.username')
                 .html(user.username);
+            clone.find('.firstName')
+                .html(user.firstName);
+            clone.find('.lastName')
+                .html(user.lastName);
+            clone.find('.role')
+                .html(user.role);
+            clone.attr('class', 'val');
             tbody.append(clone);
         }
     }

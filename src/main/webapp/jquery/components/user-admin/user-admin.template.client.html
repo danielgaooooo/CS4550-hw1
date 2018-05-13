@@ -4,55 +4,87 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="user-admin.style.client.css" rel="stylesheet">
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous">
     </script>
-    <title>Insert title here</title>
     <script src="../../services/user.service.client.js"></script>
     <script src="user-admin.controller.client.js"></script>
+    <title>Admin Page</title>
 </head>
 
 <body>
 
 <div class="container">
-    <h1 id="title">User Admin</h1>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Username</th>
-            <th>Password</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-        </tr>
-        <tr>
-            <th><input id="usernameFld" class="form-control" placeholder="John"></th>
-            <th><input id="passwordFld" class="form-control" type="password"></th>
-            <th><input id="firstNameFld" class="form-control" placeholder="Johnathan"></th>
-            <th><input id="lastNameFld" class="form-control" placeholder="Bobbery"></th>
-            <th>
-                <button id="createUser" class="btn btn-success">Create</button>
-            </th>
-        </tr>
-        </thead>
+    <header>
+        <div id="head">
+            <h1 id="title">User Admin</h1>
+        </div>
+    </header>
+    <div id="table">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <td><input id="usernameFld"
+                           class="form-control"
+                           placeholder="Username">
+                </td>
+                <td><input id="passwordFld"
+                           class="form-control"
+                           type="password"
+                           placeholder="Password">
+                </td>
+                <td><input id="firstNameFld"
+                           class="form-control"
+                           placeholder="First Name">
+                </td>
+                <td><input id="lastNameFld"
+                           class="form-control"
+                           placeholder="Last Name">
+                </td>
+                <td>
+                    <select id="roleFld"
+                            class="form-control">
+                        <option value="FACULTY">Faculty</option>
+                        <option value="STUDENT">Student</option>
+                    </select>
+                </td>
+                <td>
+                    <button id="createUser"
+                            class="btn btn-success">Create
+                    </button>
+                </td>
+            </tr>
+            </thead>
 
-        <tbody>
-        <tr class="template">
-            <td class="username">Alice</td>
-            <td>***</td>
-            <td>Alice</td>
-            <td>George</td>
-            <th>
-                <button class="delete btn btn-danger">Delete</button>
-                <button class="edit btn btn-primary">Edit</button>
-            </th>
-        </tr>
-        </tbody>
+            <tbody>
+            <tr class="template">
+                <td class="username">Alice</td>
+                <td class="password"></td>
+                <td class="firstName">Alice</td>
+                <td class="lastName">George</td>
+                <td class="role">FACULTY</td>
+                <th>
+                    <button class="delete btn btn-danger">Delete</button>
+                    <button class="edit btn btn-primary">Edit</button>
+                </th>
+            </tr>
+            </tbody>
 
-        <tfoot>
-        </tfoot>
-    </table>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
 </div>
 
 </body>
