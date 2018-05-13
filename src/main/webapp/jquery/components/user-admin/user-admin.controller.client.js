@@ -30,6 +30,31 @@
         userService.createUser(user).then(findAllUsers);
     }
 
+    function findAllUsers() {
+        userService.findAllUsers().then(renderUsers);
+    }
+
+    function findUserById(id) {
+        userService.findUserById(id).then(renderUser);
+    }
+
+    function renderUser(user) {
+        var clone = template.clone();
+        clone.attr('id', user.id);
+        clone.find('.delete').click(deleteUser);
+        clone.find('.edit').click(selectUser);
+        clone.find('.username')
+            .html(user.username);
+        clone.find('.firstName')
+            .html(user.firstName);
+        clone.find('.lastName')
+            .html(user.lastName);
+        clone.find('.role')
+            .html(user.role);
+        clone.attr('class', 'val');
+        tbody.append(clone);
+    }
+
     function renderUsers(users) {
         tbody.empty();
         for (var i = 0; i < users.length; i++) {
@@ -52,10 +77,6 @@
         }
     }
 
-    function findAllUsers() {
-        userService.findAllUsers().then(renderUsers);
-    }
-
     function deleteUser(event) {
         var deleteBtn = $(event.currentTarget);
         var userId = deleteBtn
@@ -65,7 +86,11 @@
         userService.deleteUser(userId).then(findAllUsers);
     }
 
-    function editUser(event) {
-        console.log(event);
+    function selectUser(event) {
+        console.log(event).then(updateUser);
+    }
+
+    function updateUser(user) {
+        console.log('hey what\'s up');
     }
 })();
