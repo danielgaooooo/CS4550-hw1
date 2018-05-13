@@ -14,10 +14,13 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String username;
+	private String password;
 	private String firstName;
 	private String lastName;
-	private String password;
+	private int phone;
+	private String email;
 	private String role;
+	private String dateOfBirth;
 	
 	public int getId() {
 		return id;
@@ -47,8 +50,8 @@ public class User {
 		return lastName;
 	}
 	
-	public void setLastname(String lastname) {
-		this.lastName = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 	public String getPassword() {
@@ -65,5 +68,29 @@ public class User {
 	
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public int getPhone() {
+		return phone;
+	}
+
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 }

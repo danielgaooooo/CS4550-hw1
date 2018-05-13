@@ -53,6 +53,7 @@
             .html(user.role);
         clone.attr('class', 'val');
         tbody.append(clone);
+        emptyFields();
     }
 
     function renderUsers(users) {
@@ -63,7 +64,7 @@
 
             clone.attr('id', user.id);
             clone.find('.delete').click(deleteUser);
-            clone.find('.edit').click(editUser);
+            clone.find('.edit').click(selectUser);
             clone.find('.username')
                 .html(user.username);
             clone.find('.firstName')
@@ -75,6 +76,14 @@
             clone.attr('class', 'val');
             tbody.append(clone);
         }
+        emptyFields();
+    }
+
+    function emptyFields() {
+        $('#usernameFld').val('');
+        $('#passwordFld').val('');
+        $('#firstNameFld').val('');
+        $('#lastNameFld').val('');
     }
 
     function deleteUser(event) {
