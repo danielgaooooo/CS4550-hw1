@@ -59,10 +59,10 @@ function UserServiceClient() {
         });
     }
 
-    function login(username, password) {
+    function login(user) {
         return fetch(self.loginUrl, {
             method: 'post',
-            body: JSON.stringify({username: username, password: password}),
+            body: JSON.stringify({username: user.username, password: user.password}),
             headers: {
                 'content-type': 'application/json'
             }
@@ -78,11 +78,7 @@ function UserServiceClient() {
             }
         })
             .then(function (response) {
-                if (response.bodyUsed) {
-                    return response.json();
-                } else {
-                    return null;
-                }
+                return response.json();
             });
     }
 }

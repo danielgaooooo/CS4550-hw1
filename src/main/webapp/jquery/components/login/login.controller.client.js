@@ -2,33 +2,21 @@
     var $usernameFld;
     var $passwordFld;
     var $loginBtn;
-    var $forgotPasswordBtn;
-    var $registerBtn;
 
     var userService = new UserServiceClient();
     $(main);
 
     function main() {
-        $usernameFld = $('#username').val();
-        $passwordFld = $('#password').val();
+        $usernameFld = $('#username');
+        $passwordFld = $('#password');
 
         $loginBtn = $('#loginBtn').click(login);
-        $forgotPasswordBtn = $('#forgotPassword').click(forgotPassword);
-        $registerBtn = $('#signUp').click(register);
     }
 
     function login() {
         var user = new User();
-        user.setUsername($usernameFld);
-        user.setPassword($passwordFld);
+        user.setUsername($usernameFld.val());
+        user.setPassword($passwordFld.val());
         userService.login(user);
-    }
-
-    function forgotPassword() {
-
-    }
-
-    function register() {
-
     }
 })();

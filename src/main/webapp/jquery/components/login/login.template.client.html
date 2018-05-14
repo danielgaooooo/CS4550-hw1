@@ -11,7 +11,10 @@
             crossorigin="anonymous">
     </script>
     <title>Insert title here</title>
+
+    <script src="../../models/user.model.client.js"></script>
     <script src="../../services/user.service.client.js"></script>
+    <script src="login.controller.client.js"></script>
 </head>
 <body>
 
@@ -43,15 +46,19 @@
                     <input type="password" class="form-control" id="password" placeholder="123qwe#$%">
                 </div>
             </div>
-            <button id="updateBtn" type="button" class="btn btn-primary btn-block">
+            <button id="loginBtn" type="button" class="btn btn-primary btn-block">
                 Log in!
             </button>
-            <button id="forgotPassword" type="button" class="btn btn-default btn-block">
-                Forgot your password?
-            </button>
-            <button id="signUp" type="button" class="btn btn-default btn-block">
-                Don't have an account? Sign up!
-            </button>
+            <div class="row">
+                <div class="col-6">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <div class="col-6">
+                    <a href="../register/register.template.client.html" class="float-right">
+                        Don't have an account? Sign up here!
+                    </a>
+                </div>
+            </div>
         </form>
     </div>
 </div>

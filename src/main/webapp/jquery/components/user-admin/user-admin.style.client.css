@@ -1,12 +1,12 @@
 body {
-    font: 15px/normal "Courier New";
+    font: 15px/normal Georgia;
     padding: 0;
     margin: 0;
-    background-color: thistle;
+    background-color: whitesmoke;
 }
 
 #head {
-    background-color: lavender;
+    background-color: lightskyblue;
 }
 
 .container {
@@ -19,4 +19,18 @@ body {
 
 .template {
     display: none;
+}
+
+
+header a {
+    color: blue;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header li {
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
 }

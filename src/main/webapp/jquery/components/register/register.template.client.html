@@ -31,6 +31,9 @@
         </nav>
     </header>
     <div id="form">
+        <div id="badPass" class="alert alert-danger" role="alert">
+            Your passwords do not match.
+        </div>
         <form>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Username</label>
@@ -53,9 +56,13 @@
             <button id="updateBtn" type="button" class="btn btn-primary btn-block">
                 Register
             </button>
-            <button id="loginBtn" type="button" class="btn btn-default btn-block">
-                Already have an account? Log in here.
-            </button>
+            <div class="row">
+                <div class="col-6">
+                    <a href="../login/login.template.client.html">
+                        Already have an account? Log in here.
+                    </a>
+                </div>
+            </div>
         </form>
     </div>
 </div>

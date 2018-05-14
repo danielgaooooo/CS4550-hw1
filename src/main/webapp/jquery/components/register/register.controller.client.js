@@ -11,14 +11,18 @@
     }
 
     function register() {
-        $verifyPasswordFld = $('#verifyPassword').val();
         $usernameFld = $('#username').val();
+        $verifyPasswordFld = $('#verifyPassword').val();
         $passwordFld = $('#password').val();
-        var user = new User();
-        user.setUsername($usernameFld);
-        user.setPassword($passwordFld);
-        userService.register(user);
-        emptyFields();
+        if ($verifyPasswordFld === $passwordFld) {
+            var user = new User();
+            user.setUsername($usernameFld);
+            user.setPassword($passwordFld);
+            userService.register(user);
+            emptyFields();
+        } else {
+            badPassword();
+        }
     }
 
     function emptyFields() {

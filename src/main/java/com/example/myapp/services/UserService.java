@@ -67,7 +67,8 @@ public class UserService {
 	
 	@PostMapping("/api/login")
 	public List<User> login(@RequestBody User user) {
-		return (List<User>) repo.findUserByCredentials(user.getUsername(), user.getPassword());
+		return (List<User>) repo
+				.findUserByCredentials(user.getUsername(), user.getPassword());
 	}
 	
 	@PostMapping("/api/register")
