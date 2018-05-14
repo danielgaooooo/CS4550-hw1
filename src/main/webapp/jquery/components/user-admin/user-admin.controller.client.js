@@ -20,13 +20,12 @@
         var firstName = $('#firstNameFld').val();
         var lastName = $('#lastNameFld').val();
         var role = $('#roleFld').val();
-        var user = {
-            username: username,
-            password: password,
-            firstName: firstName,
-            lastName: lastName,
-            role: role
-        };
+        var user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setRole(role);
         userService.createUser(user).then(findAllUsers);
     }
 
@@ -64,7 +63,7 @@
 
             clone.attr('id', user.id);
             clone.find('.delete').click(deleteUser);
-            clone.find('.edit').click(selectUser);
+            clone.find('.edit').click(updateUser);
             clone.find('.username')
                 .html(user.username);
             clone.find('.firstName')
@@ -93,10 +92,6 @@
             .parent()
             .attr('id');
         userService.deleteUser(userId).then(findAllUsers);
-    }
-
-    function selectUser(event) {
-        console.log(event).then(updateUser);
     }
 
     function updateUser(user) {

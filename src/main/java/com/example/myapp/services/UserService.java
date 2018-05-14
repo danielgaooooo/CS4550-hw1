@@ -50,8 +50,14 @@ public class UserService {
 		Optional<User> data = repo.findById(userId);
 		if (data.isPresent()) {
 			User user = data.get();
+			user.setUsername(newUser.getUsername());
+			user.setPassword(newUser.getPassword());
 			user.setFirstName(newUser.getFirstName());
-			user.setLastname(newUser.getLastName());
+			user.setLastName(newUser.getLastName());
+			user.setEmail(newUser.getEmail());
+			user.setPhone(newUser.getPhone());
+			user.setDateOfBirth(newUser.getDateOfBirth());
+			user.setRole(newUser.getRole());
 			repo.save(user);
 			return user;
 		} else {
@@ -62,5 +68,14 @@ public class UserService {
 	@PostMapping("/api/login")
 	public List<User> login(@RequestBody User user) {
 		return (List<User>) repo.findUserByCredentials(user.getUsername(), user.getPassword());
+	}
+	
+	@PostMapping("/api/register")
+	public User register(@RequestBody User user) {
+		if (this.login(user).size() == 0 || this.login(user) == null) {
+			return this.createUser(user);
+		} else {
+			return null;
+		}
 	}
 }

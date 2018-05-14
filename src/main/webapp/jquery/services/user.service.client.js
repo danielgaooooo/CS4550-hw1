@@ -5,9 +5,12 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.updateUser = updateUser;
     this.deleteUser = deleteUser;
+    this.register = register;
     this.login = login;
 
+
     this.loginUrl = 'http://localhost:8080/api/login';
+    this.registerUrl = 'http://localhost:8080/api/register';
     this.url = 'http://localhost:8080/api/user';
 
     var self = this;
@@ -37,6 +40,7 @@ function UserServiceClient() {
     }
 
     function updateUser(userId, user) {
+        console.log(user.dob);
         return fetch(self.url + '/' + userId, {
             method: 'put',
             body: JSON.stringify(user),
@@ -45,12 +49,8 @@ function UserServiceClient() {
             }
         })
             .then(function (response) {
-                if (response.bodyUsed) {
-                    return response.json();
-                } else {
-                    return null;
-                }
-            });
+                return response.json();
+            })
     }
 
     function deleteUser(userId) {
@@ -67,5 +67,22 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         });
+    }
+
+    function register(user) {
+        return fetch(self.registerUrl, {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(function (response) {
+                if (response.bodyUsed) {
+                    return response.json();
+                } else {
+                    return null;
+                }
+            });
     }
 }

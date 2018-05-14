@@ -1,29 +1,46 @@
 (function() {
     $(init);
 
-    var $staticEmail;
+    var $username;
+    var $password;
     var $firstName;
     var $lastName;
+    var $email;
+    var $phone;
+    var $role;
+    var $date;
+
     var $updateBtn;
 
     var userService = new UserServiceClient();
 
     function init() {
-        $staticEmail = $("#staticEmail");
+        $username = $("#username");
+        $password = $("#inputPassword");
         $firstName = $("#firstName");
         $lastName = $("#lastName");
+        $email = $("#email");
+        $phone = $("#phone");
+        $role = $("#roleFld");
+        $date = $("#date");
+
         $updateBtn = $("#updateBtn")
             .click(updateUser);
-        findUserById(12);
+        findUserById(342);
     }
 
     function updateUser() {
-        var user = {
-            firstName: $firstName.val(),
-            lastName: $lastName.val()
-        };
+        var user = new User();
+        user.setUsername($username.val());
+        user.setPassword($password.val());
+        user.setFirstName($firstName.val());
+        user.setLastName($lastName.val());
+        user.setEmail($email.val());
+        user.setPhone($phone.val());
+        user.setRole($role.val());
+        user.setDateOfBirth($date.val());
 
-        userService.updateUser(12, user).then(init);
+        userService.updateUser(342, user).then(renderUser);
     }
 
     function findUserById(userId) {
@@ -33,8 +50,13 @@
     }
 
     function renderUser(user) {
-        $staticEmail.val(user.username);
+        $username.val(user.username);
+        $password.val(user.password);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);
+        $email.val(user.email);
+        $phone.val(user.phone);
+        $role.val(user.role);
+        $date.val(user.dateOfBirth.substr(0, 10));
     }
 })();

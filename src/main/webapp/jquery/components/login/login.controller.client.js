@@ -1,29 +1,34 @@
 (function () {
     var $usernameFld;
     var $passwordFld;
-    var $verifyPasswordFld;
+    var $loginBtn;
+    var $forgotPasswordBtn;
     var $registerBtn;
+
     var userService = new UserServiceClient();
     $(main);
 
     function main() {
-        $('#updateBtn').click(register);
-    }
-
-    function register() {
-        $verifyPasswordFld = $('#verifyPassword').val();
         $usernameFld = $('#username').val();
         $passwordFld = $('#password').val();
+
+        $loginBtn = $('#loginBtn').click(login);
+        $forgotPasswordBtn = $('#forgotPassword').click(forgotPassword);
+        $registerBtn = $('#signUp').click(register);
+    }
+
+    function login() {
         var user = new User();
         user.setUsername($usernameFld);
         user.setPassword($passwordFld);
-        userService.register(user);
-        emptyFields();
+        userService.login(user);
     }
 
-    function emptyFields() {
-        $('#username').val('');
-        $('#password').val('');
-        $('#verifyPassword').val('');
+    function forgotPassword() {
+
+    }
+
+    function register() {
+
     }
 })();
