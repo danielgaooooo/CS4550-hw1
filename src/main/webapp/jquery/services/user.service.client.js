@@ -2,6 +2,7 @@ function UserServiceClient() {
 
     this.createUser = createUser;
     this.findAllUsers = findAllUsers;
+    this.findUserByUsername = findUserByUsername;
     this.findUserById = findUserById;
     this.updateUser = updateUser;
     this.deleteUser = deleteUser;
@@ -69,6 +70,14 @@ function UserServiceClient() {
             .then(function (response) {
                 return response.json();
             });
+    }
+
+    function findUserByUsername(username) {
+        return fetch(self.registerUrl + '/' + username).then(
+            function(response) {
+                return response.json();
+            }
+        )
     }
 
     function register(user) {

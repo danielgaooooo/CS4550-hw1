@@ -19,22 +19,22 @@ import com.example.myapp.repositories.UserRepository;
 public class UserService {
 	@Autowired
 	UserRepository repo;
-	
+
 	@DeleteMapping("/api/user/{userId}")
 	public void deleteUser(@PathVariable("userId") int id) {
 		repo.deleteById(id);
 	}
-	
+
 	@PostMapping("/api/user")
 	public User createUser(@RequestBody User user) {
 		return repo.save(user);
 	}
-	
+
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {
 		return (List<User>) repo.findAll();
 	}
-	
+
 	@GetMapping("/api/user/{userId}")
 	public User findAllUsers(@PathVariable("userId") int id) {
 		Optional<User> data = repo.findById(id);
@@ -44,33 +44,60 @@ public class UserService {
 			return null;
 		}
 	}
-	
+
 	@PutMapping("api/user/{userId}")
 	public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
 		Optional<User> data = repo.findById(userId);
 		if (data.isPresent()) {
 			User user = data.get();
-			user.setUsername(newUser.getUsername());
-			user.setPassword(newUser.getPassword());
-			user.setFirstName(newUser.getFirstName());
-			user.setLastName(newUser.getLastName());
-			user.setEmail(newUser.getEmail());
-			user.setPhone(newUser.getPhone());
-			user.setDateOfBirth(newUser.getDateOfBirth());
-			user.setRole(newUser.getRole());
+			if (newUser.getUsername() != null) {
+				user.setUsername(newUser.getUsername());
+			}
+			if (newUser.getPassword() != null) {
+				user.setPassword(newUser.getPassword());
+			}
+			if (newUser.getFirstName() != null) {
+				user.setFirstName(newUser.getFirstName());
+			}
+			if (newUser.getLastName() != null) {
+				user.setLastName(newUser.getLastName());
+			}
+			if (newUser.getEmail() != null) {
+				user.setEmail(newUser.getEmail());
+			}
+			if (newUser.getPhone() != null) {
+				user.setPhone(newUser.getPhone());
+			}
+			if (newUser.getDateOfBirth() != null) {
+				user.setDateOfBirth(newUser.getDateOfBirth());
+			}
+			if (newUser.getRole() != null) {
+				user.setRole(newUser.getRole());
+			}
 			repo.save(user);
 			return user;
 		} else {
 			return null;
 		}
 	}
-	
+
 	@PostMapping("/api/login")
-	public User findUserByUsername(@RequestBody User user) {
+	public User login(@RequestBody User user) {
 		return ((List<User>) repo
 				.findUserByCredentials(user.getUsername(), user.getPassword())).get(0);
 	}
-	
+
+	@GetMapping("/api/register/{username}")
+	public User findUserByUsername(@PathVariable("username") String username) {
+		List<User> users = ((List<User>) repo.findUserByUsername(username));
+		if (users.isEmpty()) {
+			return new User();
+		} else {
+
+			return users.get(0);
+		}
+	}
+
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user) {
 		if (((List<User>)repo.findUserByUsername(user.getUsername())).size() == 0) {

@@ -21,7 +21,6 @@
     }
 
     function checkExists(user) {
-        console.log(user);
         if (user.username == null && user.password == null) {
             alert('Your username or password is incorrect. Please try again.');
         } else {

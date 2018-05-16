@@ -11,6 +11,7 @@
     var $date;
 
     var $updateBtn;
+    var $logoutBtn;
 
     var userService = new UserServiceClient();
 
@@ -26,6 +27,8 @@
 
         $updateBtn = $("#updateBtn")
             .click(updateUser);
+        $logoutBtn = $("#logoutBtn")
+            .click(logoutUser);
         var id = getUrlVars();
         findUserById(id);
     }
@@ -44,6 +47,10 @@
         var id = getUrlVars();
         userService.updateUser(id, user).then(renderUser);
         success();
+    }
+
+    function logoutUser() {
+        window.location.href = '../login/login.template.client.html';
     }
 
     function success() {

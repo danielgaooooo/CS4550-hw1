@@ -97,39 +97,41 @@
 
     function updateUser(event) {
         var editBtn = $(event.currentTarget);
-        var userId = editBtn
-            .parent()
-            .parent();
+        var userIdElement = editBtn.parent().parent();
         if (!editing) {
-            userId.find('td').each(function () {
+            userIdElement.find('td').each(function () {
                 this.contentEditable = true;
             });
-            userId.find('.edit').html('Confirm');
+            userIdElement.find('.edit').html('Confirm');
             editing = true;
         } else {
             var newUsername;
             var newFirst;
             var newLast;
             var newRole;
-            userId.find('td').each(function () {
-                this.contentEditable = false;
-            });
+            newUsername = $('.username').html();
+            newFirst = $('.firstName').html();
+            newLast = $('.lastName').html();
+            newRole = $('.role').html();
+            if (newRole != "FACULTY" && newRole != "STUDENT") {
+                alert('Not a valid role. Must be either FACULTY or STUDENT (uppercase).');
+            } else {
+                var newUser = new User();
+                newUser.setUsername(newUsername);
+                newUser.setFirstName(newFirst);
+                newUser.setLastName(newLast);
+                newUser.setRole(newRole);
+                var id = userIdElement.attr('id');
+                userService.updateUser(parseInt(id), newUser)
+                    .then(alert('User updated successfully!'));
 
-            /*
-            newUsername = userId.find('.username').val();
-            newFirst = userId.find('.firstName').val();
-            newLast = userId.find('.lastName').val();
-            newRole = userId.find('.role').val();
-            var newUser = new User();
-            newUser.setUsername(newUsername);
-            newUser.setFirstName(newFirst);
-            newUser.setLastName(newLast);
-            newUser.setRole(newRole);
-            userService.updateUser(parseInt(userId), newUser);
-            */
+                userIdElement.find('.edit').html('Edit');
+                editing = false;
 
-            userId.find('.edit').html('Edit');
-            editing = false;
+                userIdElement.find('td').each(function () {
+                    this.contentEditable = false;
+                });
+            }
         }
     }
 })();
