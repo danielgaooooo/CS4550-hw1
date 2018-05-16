@@ -1,4 +1,4 @@
-(function() {
+(function () {
     $(init);
 
     var $username;
@@ -26,7 +26,8 @@
 
         $updateBtn = $("#updateBtn")
             .click(updateUser);
-        findUserById(342);
+        var id = getUrlVars();
+        findUserById(id);
     }
 
     function updateUser() {
@@ -40,7 +41,13 @@
         user.setRole($role.val());
         user.setDateOfBirth($date.val());
 
-        userService.updateUser(342, user).then(renderUser);
+        var id = getUrlVars();
+        userService.updateUser(id, user).then(renderUser);
+        success();
+    }
+
+    function success() {
+        alert('Profile updated successfully');
     }
 
     function findUserById(userId) {
@@ -57,6 +64,14 @@
         $email.val(user.email);
         $phone.val(user.phone);
         $role.val(user.role);
-        $date.val(user.dateOfBirth.substr(0, 10));
+        if (user.dateOfBirth != null) {
+            $date.val(user.dateOfBirth.substr(0, 10));
+        }
+    }
+
+    function getUrlVars() {
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1);
+        var id = hashes.substr(7);
+        return parseInt(id);
     }
 })();

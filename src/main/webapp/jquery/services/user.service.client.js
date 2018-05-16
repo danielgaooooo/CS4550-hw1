@@ -40,7 +40,6 @@ function UserServiceClient() {
     }
 
     function updateUser(userId, user) {
-        console.log(user.dob);
         return fetch(self.url + '/' + userId, {
             method: 'put',
             body: JSON.stringify(user),
@@ -66,7 +65,10 @@ function UserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
-        });
+        })
+            .then(function (response) {
+                return response.json();
+            });
     }
 
     function register(user) {

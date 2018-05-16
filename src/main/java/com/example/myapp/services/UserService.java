@@ -66,14 +66,14 @@ public class UserService {
 	}
 	
 	@PostMapping("/api/login")
-	public List<User> login(@RequestBody User user) {
-		return (List<User>) repo
-				.findUserByCredentials(user.getUsername(), user.getPassword());
+	public User findUserByUsername(@RequestBody User user) {
+		return ((List<User>) repo
+				.findUserByCredentials(user.getUsername(), user.getPassword())).get(0);
 	}
 	
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user) {
-		if (this.login(user).size() == 0 || this.login(user) == null) {
+		if (((List<User>)repo.findUserByUsername(user.getUsername())).size() == 0) {
 			return this.createUser(user);
 		} else {
 			return null;

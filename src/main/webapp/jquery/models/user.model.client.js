@@ -8,6 +8,8 @@ function User(username, password, firstName, lastName, email, phone, role, dateO
     this.role = role;
     this.dateOfBirth = dateOfBirth;
 
+    self = this;
+
     this.getUsername = getUsername;
     this.setUsername = setUsername;
     this.getPassword = getPassword;
@@ -26,66 +28,66 @@ function User(username, password, firstName, lastName, email, phone, role, dateO
     this.setDateOfBirth = setDateOfBirth;
 
     function getUsername() {
-        return this.username;
+        return self.username;
     }
 
     function setUsername(username) {
-        this.username = username;
+        self.username = username;
     }
 
     function getPassword() {
-        return this.password;
+        return self.password;
     }
 
     function setPassword(password) {
-        this.password = password;
+        self.password = password;
     }
 
     function getFirstName() {
-        return this.firstName;
+        return self.firstName;
     }
 
     function setFirstName(firstName) {
-        this.firstName = firstName;
+        self.firstName = firstName;
     }
 
     function getLastName() {
-        return this.lastName;
+        return self.lastName;
     }
 
     function setLastName(lastName) {
-        this.lastName = lastName;
+        self.lastName = lastName;
     }
 
     function getEmail() {
-        return this.email;
+        return self.email;
     }
 
     function setEmail(email) {
-        this.email = email;
+        self.email = email;
     }
 
     function getPhone() {
-        return this.phone;
+        return self.phone;
     }
 
     function setPhone(phone) {
-        this.phone = phone;
+        self.phone = phone;
     }
 
     function getRole() {
-        return this.role;
+        return self.role;
     }
 
     function setRole(role) {
-        this.role = role;
+        self.role = role;
     }
 
     function getDateOfBirth() {
-        return this.dateOfBirth;
+        return self.dateOfBirth;
     }
 
     function setDateOfBirth(dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        self.dateOfBirth = dateOfBirth;
     }
 }

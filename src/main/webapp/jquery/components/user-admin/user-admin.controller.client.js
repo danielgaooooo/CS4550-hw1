@@ -3,6 +3,7 @@
 
     jQuery(main);
 
+    var editing = false;
     var tbody;
     var template;
     var userService = new UserServiceClient();
@@ -41,7 +42,7 @@
         var clone = template.clone();
         clone.attr('id', user.id);
         clone.find('.delete').click(deleteUser);
-        clone.find('.edit').click(selectUser);
+        clone.find('.edit').click(updateUser);
         clone.find('.username')
             .html(user.username);
         clone.find('.firstName')
@@ -94,7 +95,41 @@
         userService.deleteUser(userId).then(findAllUsers);
     }
 
-    function updateUser(user) {
-        console.log('hey what\'s up');
+    function updateUser(event) {
+        var editBtn = $(event.currentTarget);
+        var userId = editBtn
+            .parent()
+            .parent();
+        if (!editing) {
+            userId.find('td').each(function () {
+                this.contentEditable = true;
+            });
+            userId.find('.edit').html('Confirm');
+            editing = true;
+        } else {
+            var newUsername;
+            var newFirst;
+            var newLast;
+            var newRole;
+            userId.find('td').each(function () {
+                this.contentEditable = false;
+            });
+
+            /*
+            newUsername = userId.find('.username').val();
+            newFirst = userId.find('.firstName').val();
+            newLast = userId.find('.lastName').val();
+            newRole = userId.find('.role').val();
+            var newUser = new User();
+            newUser.setUsername(newUsername);
+            newUser.setFirstName(newFirst);
+            newUser.setLastName(newLast);
+            newUser.setRole(newRole);
+            userService.updateUser(parseInt(userId), newUser);
+            */
+
+            userId.find('.edit').html('Edit');
+            editing = false;
+        }
     }
 })();

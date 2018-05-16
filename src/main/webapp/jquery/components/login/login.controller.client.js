@@ -17,6 +17,19 @@
         var user = new User();
         user.setUsername($usernameFld.val());
         user.setPassword($passwordFld.val());
-        userService.login(user);
+        userService.login(user).then(checkExists);
+    }
+
+    function checkExists(user) {
+        console.log(user);
+        if (user.username == null && user.password == null) {
+            alert('Your username or password is incorrect. Please try again.');
+        } else {
+            goToProfile(user);
+        }
+    }
+
+    function goToProfile(user) {
+        window.location.href = '../profile/profile.template.client.html?userId=' + user.id;
     }
 })();
