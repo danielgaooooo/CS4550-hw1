@@ -10,9 +10,9 @@ function UserServiceClient() {
     this.login = login;
 
 
-    this.loginUrl = 'http://localhost:8080/api/login';
-    this.registerUrl = 'http://localhost:8080/api/register';
-    this.url = 'http://localhost:8080/api/user';
+    this.loginUrl = '/api/login';
+    this.registerUrl = '/api/register';
+    this.url = '/api/user';
 
     var self = this;
 
