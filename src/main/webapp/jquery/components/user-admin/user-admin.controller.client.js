@@ -24,15 +24,15 @@
 
         if (username === "" || password === "" || firstName === "" || lastName === "") {
             alert('Please fill out all fields before confirming.')
+        } else {
+            var user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setRole(role);
+            userService.createUser(user).then(findAllUsers);
         }
-
-        var user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setRole(role);
-        userService.createUser(user).then(findAllUsers);
     }
 
     function findAllUsers() {
