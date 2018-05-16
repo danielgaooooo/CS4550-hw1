@@ -21,6 +21,11 @@
         var firstName = $('#firstNameFld').val();
         var lastName = $('#lastNameFld').val();
         var role = $('#roleFld').val();
+
+        if (username === "" || password === "" || firstName === "" || lastName === "") {
+            alert('Please fill out all fields before confirming.')
+        }
+
         var user = new User();
         user.setUsername(username);
         user.setPassword(password);
@@ -113,8 +118,10 @@
             newFirst = $('.firstName').html();
             newLast = $('.lastName').html();
             newRole = $('.role').html();
-            if (newRole != "FACULTY" && newRole != "STUDENT") {
+            if (newRole !== "FACULTY" && newRole !== "STUDENT") {
                 alert('Not a valid role. Must be either FACULTY or STUDENT (uppercase).');
+            } else if (newUsername === "" || newFirst === "" || newLast === "" || newRole === "") {
+                alert('Please fill out all fields before confirming.')
             } else {
                 var newUser = new User();
                 newUser.setUsername(newUsername);
