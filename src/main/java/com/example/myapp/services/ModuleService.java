@@ -1,5 +1,6 @@
 package com.example.myapp.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,10 +33,10 @@ public class ModuleService {
 			@PathVariable("courseId") int courseId,
 			@RequestBody Module newModule) {
 		Optional<Course> data = courseRepository.findById(courseId);
-		
 		if(data.isPresent()) {
 			Course course = data.get();
 			newModule.setCourse(course);
+			course.setModified(new Date());
 			return moduleRepository.save(newModule);
 		}
 		return null;		
