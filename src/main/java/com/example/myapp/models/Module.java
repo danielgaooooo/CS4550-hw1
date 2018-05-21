@@ -2,6 +2,7 @@ package com.example.myapp.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Module {
 	@JsonIgnore
 	private Course course;
 	
-	@OneToMany(mappedBy="module")
+	@OneToMany(mappedBy="module", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Lesson> lessons;
 
 	public int getId() {
@@ -42,5 +43,11 @@ public class Module {
 	}
 	public void setCourse(Course course) {
 		this.course = course;
+	}
+	public List<Lesson> getLessons() {
+		return lessons;
+	}
+	public void setLessons(List<Lesson> lessons) {
+		this.lessons = lessons;
 	}
 }

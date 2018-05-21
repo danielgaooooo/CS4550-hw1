@@ -1,10 +1,9 @@
 package com.example.myapp.models;
 
-import static org.assertj.core.api.Assertions.allOf;
-
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,12 +18,13 @@ public class Course {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
+	private String owner;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modified;
 	
-	@OneToMany(mappedBy="course")
+	@OneToMany(mappedBy="course", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Module> modules;
 	public int getId() {
 		return id;
@@ -37,6 +37,12 @@ public class Course {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getOwner() {
+		return owner;
+	}
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 	public Date getCreated() {
 		return created;
