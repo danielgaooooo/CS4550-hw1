@@ -55,6 +55,15 @@ public class ModuleService {
 
 	@DeleteMapping("/api/module/{moduleId}")
 	public void deleteModule(@PathVariable("moduleId") int moduleId) {
+		Optional<Module> data = moduleRepository.findById(moduleId);
+		if (data.isPresent()) {
+			Module m = data.get();
+			Optional<Course> course = courseRepository.findById(m.getCourse().getId());
+			if (course.isPresent()) {
+				Course c = course.get();
+				c.setModified(new Date());
+			}
+		}
 		moduleRepository.deleteById(moduleId);
 	}
 
