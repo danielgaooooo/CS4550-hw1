@@ -1,5 +1,6 @@
 package com.example.myapp.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,13 @@ public class LessonService {
 	
 	@DeleteMapping("/api/lesson/{lessonId}")
 	public void deleteLesson(@PathVariable("lessonId") int id) {
+		Optional<Lesson> lesson = lessonRepository.findById(id);
+		if (lesson.isPresent()) {
+			Lesson l = lesson.get();
+			Module curr = l.getModule();
+			Course course = curr.getCourse();
+			course.setModified(new Date());
+		}
 		lessonRepository.deleteById(id);
 	}
 	
@@ -73,7 +81,9 @@ public class LessonService {
 			Module m = mod.get();
 			return m.getLessons();
 		} else {
-			return null;
+			List<Lesson> lessons = new ArrayList<Lesson>();
+			lessons.add(new Lesson());
+			return lessons;
 		}
 	}
 	@PutMapping("api/lesson/{lessonId}")
