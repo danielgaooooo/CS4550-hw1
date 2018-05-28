@@ -14,6 +14,7 @@ public class Widget {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	// common fields ============================
 	private int id;
+	private String name;
 	private String text;
 	private String widgetType;
 	private int precedence;
@@ -38,6 +39,12 @@ public class Widget {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getText() {
 		return text;

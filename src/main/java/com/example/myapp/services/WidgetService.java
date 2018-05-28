@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,6 +81,9 @@ public class WidgetService {
 			if (newWidget.getWidgetType() != null) {
 				widget.setWidgetType(newWidget.getWidgetType());
 			}
+			if (newWidget.getName() != null) {
+				widget.setName(newWidget.getName());
+			}
 			if (newWidget.getText() != null) {
 				widget.setText(newWidget.getText());
 			}
@@ -108,6 +112,10 @@ public class WidgetService {
 		}
 	}
 	
+	@DeleteMapping("/api/widget/{widgetId}")
+	public void deleteWidget(@PathVariable("widgetId") int widgetId) {
+		widgetRepository.deleteById(widgetId);
+	}
 	
 	@PostMapping("/api/widget/save")
 	public void saveAllWidgets(@RequestBody List<Widget> widget) {
