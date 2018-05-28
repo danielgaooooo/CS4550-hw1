@@ -105,6 +105,13 @@ public class WidgetService {
 			if (newWidget.getListItems() != null) {
 				widget.setListItems(newWidget.getListItems());
 			}
+			if (newWidget.getWidth() != 0) {
+				widget.setWidth(newWidget.getWidth());
+			}
+			if (newWidget.getHeight() != 0) {
+				widget.setHeight(newWidget.getHeight());
+			}
+			widget.setOrdered(newWidget.isOrdered());
 			widgetRepository.save(widget);
 			return widget;
 		} else {

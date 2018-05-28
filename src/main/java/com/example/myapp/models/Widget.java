@@ -24,6 +24,8 @@ public class Widget {
 	
 	// for IMAGE ================================
 	private String src;
+	private int height;
+	private int width;
 	
 	// for HEADING ==============================
 	private int size;
@@ -33,6 +35,7 @@ public class Widget {
 	
 	// for LIST =================================
 	private String listItems;
+	private boolean ordered;
 	
 	public int getId() {
 		return id;
@@ -93,5 +96,23 @@ public class Widget {
 	}
 	public void setListItems(String listItems) {
 		this.listItems = listItems;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	public int getWidth() {
+		return width;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public boolean isOrdered() {
+		return ordered;
+	}
+	public void setOrdered(boolean ordered) {
+		this.ordered = ordered;
 	}
 }
