@@ -132,6 +132,12 @@ public class WidgetService {
 		Optional<Lesson> data = lessonRepository.findById(lid);
 		if (data.isPresent()) {
 			Lesson l = data.get();
+			List<Widget> filterThisList = l.getWidgets();
+			for (Widget w : filterThisList) {
+				if (!widgets.contains(w)) {
+					widgetRepository.delete(w);
+				}
+			}
 			for (Widget w : widgets) {
 				Optional<Widget> widget = widgetRepository.findById(w.getId());
 				if (widget.isPresent()) {

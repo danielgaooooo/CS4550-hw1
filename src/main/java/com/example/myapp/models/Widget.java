@@ -18,6 +18,7 @@ public class Widget {
 	private String text;
 	private String widgetType;
 	private int precedence;
+	private int maxPrecedence;
 	@ManyToOne
 	@JsonIgnore
 	private Lesson lesson;
@@ -114,5 +115,11 @@ public class Widget {
 	}
 	public void setListType(String listType) {
 		this.listType = listType;
+	}
+	public int getMaxPrecedence() {
+		return maxPrecedence;
+	}
+	public void setMaxPrecedence(int maxPrecedence) {
+		this.maxPrecedence = maxPrecedence;
 	}
 }
