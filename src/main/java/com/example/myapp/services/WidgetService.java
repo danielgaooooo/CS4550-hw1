@@ -51,7 +51,8 @@ public class WidgetService {
 		Optional<Lesson> lesson = lessonRepository.findById(lessonId);
 		if (lesson.isPresent()) {
 			Lesson l = lesson.get();
-			return l.getWidgets();
+			List<Widget> widgets = l.getWidgets();
+			return widgets;
 		} else {
 			List<Widget> widgets = new ArrayList<Widget>();
 			widgets.add(new Widget());
@@ -111,7 +112,9 @@ public class WidgetService {
 			if (newWidget.getHeight() != 0) {
 				widget.setHeight(newWidget.getHeight());
 			}
-			widget.setOrdered(newWidget.isOrdered());
+			if (newWidget.getListType() != null) {
+				widget.setListType(newWidget.getListType());
+			}
 			widgetRepository.save(widget);
 			return widget;
 		} else {
@@ -124,11 +127,20 @@ public class WidgetService {
 		widgetRepository.deleteById(widgetId);
 	}
 	
-	@PostMapping("/api/widget/save")
-	public void saveAllWidgets(@RequestBody List<Widget> widget) {
-		widgetRepository.deleteAll();
-		for (Widget w : widget) {
-			widgetRepository.save(w);
+	@PostMapping("/api/lesson/{lid}/widget/save")
+	public void saveAllWidgets(@PathVariable("lid") int lid, @RequestBody List<Widget> widgets) {
+		Optional<Lesson> data = lessonRepository.findById(lid);
+		if (data.isPresent()) {
+			Lesson l = data.get();
+			for (Widget w : widgets) {
+				Optional<Widget> widget = widgetRepository.findById(w.getId());
+				if (widget.isPresent()) {
+					widgetRepository.delete(widget.get());
+				}
+				w.setLesson(l);
+				widgetRepository.save(w);
+			}
+			l.setWidgets(widgets);
 		}
 	}
 }

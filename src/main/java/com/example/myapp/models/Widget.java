@@ -35,7 +35,7 @@ public class Widget {
 	
 	// for LIST =================================
 	private String listItems;
-	private boolean ordered;
+	private String listType;
 	
 	public int getId() {
 		return id;
@@ -109,10 +109,10 @@ public class Widget {
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	public boolean isOrdered() {
-		return ordered;
+	public String getListType() {
+		return listType;
 	}
-	public void setOrdered(boolean ordered) {
-		this.ordered = ordered;
+	public void setListType(String listType) {
+		this.listType = listType;
 	}
 }
