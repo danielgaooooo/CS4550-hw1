@@ -13,17 +13,7 @@ public class Assignment extends Widget {
 	private String link;
 	private String file;
 	private String answer;
-	
-	@ManyToOne
-	@JsonIgnore
-	private Lesson lesson;
 
-	public Lesson getLesson() {
-		return lesson;
-	}
-	public void setLesson(Lesson lesson) {
-		this.lesson = lesson;
-	}
 	public String getTitle() {
 		return title;
 	}

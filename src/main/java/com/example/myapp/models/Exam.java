@@ -19,10 +19,6 @@ public class Exam extends Widget {
 	@OneToMany(mappedBy="exam", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Question> questions;
 	
-	@ManyToOne
-	@JsonIgnore
-	private Lesson lesson;
-	
 	
 	public String getTitle() {
 		return title;
