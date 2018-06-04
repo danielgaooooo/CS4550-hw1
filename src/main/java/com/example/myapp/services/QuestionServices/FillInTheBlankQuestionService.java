@@ -21,7 +21,7 @@ public class FillInTheBlankQuestionService {
 	@Autowired
 	ExamRepository examRepository;
 	
-	@PostMapping("/api/exam/{examId}/essay")
+	@PostMapping("/api/exam/{examId}/fillBlank")
 	public FillInTheBlankQuestion createFillInTheBlankQuestion(@RequestBody FillInTheBlankQuestion fillQuestion, 
 			@PathVariable("examId") int examId) {
 		Optional<Exam> data = examRepository.findById(examId);

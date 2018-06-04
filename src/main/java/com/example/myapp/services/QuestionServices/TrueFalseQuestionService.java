@@ -21,7 +21,7 @@ public class TrueFalseQuestionService {
 	@Autowired
 	ExamRepository examRepository;
 	
-	@PostMapping("/api/exam/{examId}/essay")
+	@PostMapping("/api/exam/{examId}/truefalse")
 	public TrueFalseQuestion createTrueFalseQuestion(@RequestBody TrueFalseQuestion tf,
 			@PathVariable("examId") int examId) {
 		Optional<Exam> data = examRepository.findById(examId);

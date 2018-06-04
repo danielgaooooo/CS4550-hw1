@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.example.myapp.models.QuestionTypes.Question;
@@ -17,6 +18,10 @@ public class Exam extends Widget {
 	@JsonIgnore
 	@OneToMany(mappedBy="exam", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Question> questions;
+	
+	@ManyToOne
+	@JsonIgnore
+	private Lesson lesson;
 	
 	
 	public String getTitle() {

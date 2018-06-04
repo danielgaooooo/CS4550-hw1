@@ -21,7 +21,7 @@ public class MultipleChoiceQuestionService {
 	@Autowired
 	ExamRepository examRepository;
 	
-	@PostMapping("/api/exam/{examId}/essay")
+	@PostMapping("/api/exam/{examId}/multi")
 	public MultipleChoiceQuestion createMultipleChoiceQuestion(@RequestBody MultipleChoiceQuestion multi, 
 			@PathVariable("examId") int examId) {
 		Optional<Exam> data = examRepository.findById(examId);
