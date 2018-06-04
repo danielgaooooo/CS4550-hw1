@@ -1,11 +1,13 @@
 package com.example.myapp.models.QuestionTypes;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-
-import com.example.myapp.models.Question;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "JOINED_MULTIPLE_CHOICE_QUESTION")
 public class MultipleChoiceQuestion extends Question {
+	@Column(name = "OPTIONS", nullable = false)
 	private String options;
 	private int correctOption;
 	public String getOptions() {
@@ -21,3 +23,4 @@ public class MultipleChoiceQuestion extends Question {
 		this.correctOption = correctOption;
 	}
 }
+

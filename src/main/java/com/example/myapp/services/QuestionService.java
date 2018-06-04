@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myapp.models.Question;
 import com.example.myapp.models.QuestionTypes.FillInTheBlankQuestion;
+import com.example.myapp.models.QuestionTypes.Question;
 import com.example.myapp.models.QuestionTypes.TrueFalseQuestion;
-import com.example.myapp.repositories.FillInTheBlankQuestionRepository;
-import com.example.myapp.repositories.QuestionRepository;
-import com.example.myapp.repositories.TrueFalseQuestionRepository;
+import com.example.myapp.repositories.QuestionRepo.FillInTheBlankQuestionRepository;
+import com.example.myapp.repositories.QuestionRepo.QuestionRepository;
+import com.example.myapp.repositories.QuestionRepo.TrueFalseQuestionRepository;
 
 @RestController
 public class QuestionService {
@@ -29,6 +29,7 @@ public class QuestionService {
 		q.setTitle("title 123");
 		return baseRepo.save(q);
 	}
+	
 	@GetMapping("/api/inheritance/joined/fill")
 	public FillInTheBlankQuestion createFillQuestion() {
 		FillInTheBlankQuestion q = new FillInTheBlankQuestion();
@@ -39,6 +40,7 @@ public class QuestionService {
 		q.setVariables("variables 234");
 		return fillRepo.save(q);
 	}
+	
 	@GetMapping("/api/inheritance/joined/true")
 	public TrueFalseQuestion createTrueQuestion() {
 		TrueFalseQuestion q = new TrueFalseQuestion();

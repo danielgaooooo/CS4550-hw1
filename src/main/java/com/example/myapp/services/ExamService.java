@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.models.Exam;
-import com.example.myapp.models.Question;
 import com.example.myapp.models.QuestionTypes.MultipleChoiceQuestion;
+import com.example.myapp.models.QuestionTypes.Question;
 import com.example.myapp.models.QuestionTypes.TrueFalseQuestion;
 import com.example.myapp.repositories.ExamRepository;
-import com.example.myapp.repositories.MultipleChoicesQuestionRepository;
-import com.example.myapp.repositories.TrueFalseQuestionRepository;
-
+import com.example.myapp.repositories.QuestionRepo.MultipleChoiceQuestionRepository;
+import com.example.myapp.repositories.QuestionRepo.TrueFalseQuestionRepository;
 
 
 
@@ -28,11 +27,11 @@ public class ExamService {
 	@Autowired
 	TrueFalseQuestionRepository trueFalseRepository;
 	@Autowired
-	MultipleChoicesQuestionRepository mutiRepo;
+	MultipleChoiceQuestionRepository multiRepo;
 
 	@GetMapping("/api/multi/{questionId}")
 	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<MultipleChoiceQuestion> optional = mutiRepo.findById(questionId);
+		Optional<MultipleChoiceQuestion> optional = multiRepo.findById(questionId);
 		if(optional.isPresent()) {
 			return optional.get();
 		}

@@ -1,4 +1,4 @@
-package com.example.myapp.models;
+package com.example.myapp.models.QuestionTypes;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +8,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
+import com.example.myapp.models.Exam;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
