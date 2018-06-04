@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.models.Assignment;
 import com.example.myapp.models.Lesson;
-import com.example.myapp.models.Widget;
 import com.example.myapp.repositories.AssignmentRepository;
 import com.example.myapp.repositories.LessonRepository;
 
