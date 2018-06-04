@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Exam extends Widget {
 	private String title;
 	private String description;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="exam", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Question> questions;

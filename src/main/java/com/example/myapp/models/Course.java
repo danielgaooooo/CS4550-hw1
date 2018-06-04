@@ -26,6 +26,7 @@ public class Course {
 	
 	@OneToMany(mappedBy="course", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Module> modules;
+	
 	public int getId() {
 		return id;
 	}

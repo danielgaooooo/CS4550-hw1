@@ -19,6 +19,7 @@ public class Widget {
 	private String widgetType;
 	private int precedence;
 	private int maxPrecedence;
+	
 	@ManyToOne
 	@JsonIgnore
 	private Lesson lesson;

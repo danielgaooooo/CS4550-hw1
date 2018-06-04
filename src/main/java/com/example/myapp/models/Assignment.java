@@ -13,6 +13,7 @@ public class Assignment extends Widget {
 	private String link;
 	private String file;
 	private String answer;
+	
 	@ManyToOne
 	@JsonIgnore
 	private Lesson lesson;
