@@ -28,6 +28,9 @@ public class Lesson {
 	@OneToMany(mappedBy="lesson", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Widget> widgets;
 	
+	@OneToMany(mappedBy="lesson", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<Assignment> assignments;
+	
 	public int getId() {
 		return id;
 	}
@@ -51,5 +54,11 @@ public class Lesson {
 	}
 	public void setWidgets(List<Widget> widgets) {
 		this.widgets = widgets;
+	}
+	public List<Assignment> getAssignments() {
+		return assignments;
+	}
+	public void setAssignments(List<Assignment> assignments) {
+		this.assignments = assignments;
 	}
 }
