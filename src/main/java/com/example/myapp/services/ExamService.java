@@ -1,5 +1,6 @@
 package com.example.myapp.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.models.Exam;
 import com.example.myapp.models.Lesson;
+import com.example.myapp.models.Widget;
 import com.example.myapp.repositories.ExamRepository;
 import com.example.myapp.repositories.LessonRepository;
 import com.example.myapp.repositories.QuestionRepo.MultipleChoiceQuestionRepository;
@@ -53,7 +55,13 @@ public class ExamService {
 		Optional<Lesson> lesson = lessonRepository.findById(lessonId);
 		if (lesson.isPresent()) {
 			Lesson l = lesson.get();
-			List<Exam> exams = l.getExams();
+			List<Widget> widgets = l.getWidgets();
+			List<Exam> exams = new ArrayList<Exam>();
+			for (Widget w : widgets) {
+				if (w instanceof Exam) {
+					exams.add((Exam) w);
+				}
+			}
 			return exams;
 		} else {
 			return null;

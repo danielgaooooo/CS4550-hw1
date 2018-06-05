@@ -1,6 +1,7 @@
 package com.example.myapp.services;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.models.Assignment;
 import com.example.myapp.models.Lesson;
+import com.example.myapp.models.Widget;
 import com.example.myapp.repositories.AssignmentRepository;
 import com.example.myapp.repositories.LessonRepository;
 
@@ -48,7 +50,13 @@ public class AssignmentService {
 		Optional<Lesson> lesson = lessonRepository.findById(lessonId);
 		if (lesson.isPresent()) {
 			Lesson l = lesson.get();
-			List<Assignment> assignments = l.getAssignments();
+			List<Widget> widgets = l.getWidgets();
+			List<Assignment> assignments = new ArrayList<Assignment>();
+			for (Widget w : widgets) {
+				if (w instanceof Assignment) {
+					assignments.add((Assignment) w);
+				}
+			}
 			return assignments;
 		} else {
 			return null;
