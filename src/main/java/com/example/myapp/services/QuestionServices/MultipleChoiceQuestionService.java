@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.models.Exam;
-import com.example.myapp.models.QuestionTypes.FillInTheBlankQuestion;
 import com.example.myapp.models.QuestionTypes.MultipleChoiceQuestion;
 import com.example.myapp.repositories.ExamRepository;
 import com.example.myapp.repositories.QuestionRepo.MultipleChoiceQuestionRepository;

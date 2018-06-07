@@ -106,6 +106,7 @@ public class ExamService {
 			if (newExam.getName() != null) {
 				exam.setName(newExam.getName());
 			}
+			exam.setPoints(newExam.getPoints());
 			return examRepository.save(exam);
 		} else {
 			return null;

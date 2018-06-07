@@ -9,10 +9,20 @@ import javax.persistence.Table;
 public class TrueFalseQuestion extends Question {
 	@Column(name = "IS_TRUE", nullable = false)
 	private boolean isTrue;
+
 	public boolean isTrue() {
 		return isTrue;
 	}
+
 	public void setTrue(boolean isTrue) {
+		this.isTrue = isTrue;
+	}
+	
+	public boolean getIsTrue() {
+		return isTrue;
+	}
+	
+	public void setIsTrue(boolean isTrue) {
 		this.isTrue = isTrue;
 	}
 }

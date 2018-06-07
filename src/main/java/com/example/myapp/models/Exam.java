@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Exam extends Widget {
 	private String title;
+	int points;
 	private String description;
 	
 	@JsonIgnore
@@ -37,5 +38,11 @@ public class Exam extends Widget {
 	}
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public void setPoints(int points) {
+		this.points = points;
 	}
 }

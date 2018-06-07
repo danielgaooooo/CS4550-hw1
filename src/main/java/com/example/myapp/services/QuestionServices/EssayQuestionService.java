@@ -51,7 +51,7 @@ public class EssayQuestionService {
 	
 	@DeleteMapping("/api/essay/{essayId}")
 	public void deleteEssayQuestion(@PathVariable("essayId") int essayId) {
-		essayRepository.deleteById(essayId);
+		questionRepository.deleteById(essayId);
 	}
 	
 	@PutMapping("/api/essay/{essayId}")
