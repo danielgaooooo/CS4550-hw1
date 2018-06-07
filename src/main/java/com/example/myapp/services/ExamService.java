@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.myapp.models.Assignment;
 import com.example.myapp.models.Exam;
 import com.example.myapp.models.Lesson;
 import com.example.myapp.models.Widget;
@@ -84,5 +86,29 @@ public class ExamService {
 	@DeleteMapping("/api/exam/{examId}")
 	public void deleteExam(@PathVariable("examId") int examId) {
 		examRepository.deleteById(examId);
+	}
+	
+	@PutMapping("api/exam/{examId}")
+	public Exam updateExam(@PathVariable("examId") int examId, 
+			@RequestBody Exam newExam) {
+		Optional<Exam> data = examRepository.findById(examId);
+		if (data.isPresent()) {
+			Exam exam = data.get();
+			if (newExam.getTitle() != null) {
+				exam.setTitle(newExam.getTitle());
+			}
+			if (newExam.getDescription() != null) {
+				exam.setDescription(newExam.getDescription());
+			}
+			if (newExam.getQuestions() != null) {
+				exam.setQuestions(newExam.getQuestions());
+			}
+			if (newExam.getName() != null) {
+				exam.setName(newExam.getName());
+			}
+			return examRepository.save(exam);
+		} else {
+			return null;
+		}
 	}
 }
