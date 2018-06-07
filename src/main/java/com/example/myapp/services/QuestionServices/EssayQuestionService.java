@@ -16,11 +16,14 @@ import com.example.myapp.models.Module;
 import com.example.myapp.models.QuestionTypes.EssayQuestion;
 import com.example.myapp.repositories.ExamRepository;
 import com.example.myapp.repositories.QuestionRepo.EssayQuestionRepository;
+import com.example.myapp.repositories.QuestionRepo.QuestionRepository;
 
 
 
 @RestController
 public class EssayQuestionService {
+	@Autowired
+	QuestionRepository questionRepository;
 	@Autowired
 	EssayQuestionRepository essayRepository;
 	@Autowired
@@ -51,15 +54,15 @@ public class EssayQuestionService {
 		essayRepository.deleteById(essayId);
 	}
 	
-	@PutMapping("api/essay/{essayId}")
+	@PutMapping("/api/essay/{essayId}")
 	public EssayQuestion updateEssay(@PathVariable("essayId") int essayId, 
 			@RequestBody EssayQuestion newEssay) {
 		Optional<EssayQuestion> data = essayRepository.findById(essayId);
 		if (data.isPresent()) {
 			EssayQuestion essay = data.get();
 			essay.setDescription(newEssay.getDescription());
-			essay.setPoints(essay.getPoints());
-			essay.setTitle(essay.getTitle());
+			essay.setPoints(newEssay.getPoints());
+			essay.setTitle(newEssay.getTitle());
 			return essayRepository.save(essay);
 		} else {
 			return null;
