@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import com.example.myapp.repositories.QuestionRepo.QuestionRepository;
 import com.example.myapp.repositories.QuestionRepo.TrueFalseQuestionRepository;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class QuestionService {
 	@Autowired
 	QuestionRepository baseRepo;
